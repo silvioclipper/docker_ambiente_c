@@ -1,0 +1,28 @@
+# Escrito por silvadias
+# luisdias04@hotmail.com 
+# (32) 98887-8916
+
+version: '3'
+
+networks:
+  rede_c:
+    name: gcc_network
+    driver: bridge
+
+services:
+
+  gcc-apps:
+    
+    image: gcc:4.9         
+    container_name: gcc_silvadias
+    networks:    
+      - rede_c     
+    ports:
+      - 8080:80
+    volumes: 
+      - .:/usr/src/apps
+    working_dir: /usr/src/apps
+    command: [
+              "sh","-c","gcc -o saida main.c &&
+              ./saida"
+             ]
